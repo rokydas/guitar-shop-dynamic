@@ -1,0 +1,22 @@
+.profile-pic img{
+    width: 300px;
+    border-radius: 50%;
+}
+
+.profile{
+    text-align: center;
+    margin-top: 20px;
+}
+
+header{
+    height: auto;
+    padding-bottom: 50px;
+}
+
+.profile-description{
+    background-color: teal;
+    border-radius: 100px 20px 100px 20px;
+    margin: 30px 50px;
+    color: white;
+    padding: 20px;
+}
