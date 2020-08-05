@@ -17,6 +17,18 @@
     <link rel="stylesheet" href="styles/index.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="styles/cart.css">
     <title>Buy</title>
+
+    <script type="text/javascript">
+    function printPageArea(areaID){
+        var printContent = document.getElementById(areaID);
+        var WinPrint = window.open('', '', 'width=900,height=650');
+        WinPrint.document.write(printContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+    }
+    </script>
 </head>
 
 <body>
@@ -32,7 +44,7 @@
                     <div class="navbar-nav ml-auto">
                         <a class="nav-item nav-link active" href="index.php">Home <span
                                 class="sr-only">(current)</span></a>
-                        <a class="nav-item nav-link active" href="profile.php"><?php echo $_SESSION['username'] ?></a>
+                        <a class="nav-item nav-link active" href="profile.php"><?php echo $_SESSION['first_name'], ' ', $_SESSION['last_name'] ?></a>
                         <a class="nav-item nav-link active" href="cart.php">Cart</a>
                         <a class="nav-item nav-link active navbar-active" href="buy.php">Cash Memo</a>
                         <form action='includes/include-logout.php' method='post'>
@@ -48,6 +60,8 @@
             </div>
         </section>
     </header>
+    <div id="printableArea">
+
     <section class="container">
         <h1 class="guitar-heading">Your Digital Cash Memo</h1>
         <hr class="hori-row">
@@ -91,7 +105,7 @@
           ?>
                     <tr>
                         <td><?php echo $sl ; ?></td>
-                        <td> <img class="buy-pic" src="../images/guitars/<?php echo $image; ?>" alt=""></td>
+                        <td> <img style="height: 50px;" class="buy-pic" src="../images/guitars/<?php echo $image; ?>" alt=""></td>
                         <td><?php echo $brand; ?></td>
                         <td><?php echo $model; ?></td>
                         <td><?php echo $guitar_id;?></td>
@@ -113,12 +127,38 @@
                       </tr>
       </tbody>
         </table>
+        </div>
+        </div>
         <div class="print">
-            <button class="buy-now-button" onclick="window.print()">Print this page</button>
+            <button class="buy-now-button" onclick="printPageArea('printableArea')">Print Cash Memo</button>
         </div>
 
+
+
+        <h1 style="margin-top: 0px; margin-bottom: 50px;" class="guitar-heading text-center">Choose Your Payment Method</h1>
+
+        <div class="container text-center">
+            <img class="payment-option" src="../images/payment/credit.jpg">
+            <img class="payment-option" src="../images/payment/bkash.jpg">
+            <img class="payment-option" src="../images/payment/rocket.jpg">
+            <img class="payment-option" src="../images/payment/surecash.jpg">
+            <img class="payment-option" src="../images/payment/nogod.jpg">
+        </div>
+        <div class="text-center">
+          <button style="margin-bottom: 100px;" class="custom-button">Payment Completed</button>
         </div>
 
+        <footer>
+            <div class="social container">
+                <a href=""><img src="../images/social/fb.jpg" alt=""></a>
+                <a href=""><img src="../images/social/linkedin.jpg" alt=""></a>
+                <a href=""><img src="../images/social/instra.jpg" alt=""></a>
+                <a href=""><img src="../images/social/twitter.jpg" alt=""></a>
+                <a href=""><img src="../images/social/youtube.jpg" alt=""></a>
+
+                <p class="copyright">Copyright © 2020 Rokomari.com</p>
+            </div>
+        </footer>
 
 
 

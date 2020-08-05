@@ -102,7 +102,7 @@ footer{
 }
 
 .success{
-  color: rgb(0, 255, 0);
+  color: #00ff00;
   background-color: black;
   border-radius: 20px;
   margin: 5px 50px;
@@ -216,4 +216,31 @@ table{
     color: teal;
     font-family: 'Pacifico', cursive;
     margin-bottom: 20px;
+}
+
+.admin-block{
+    width: 300px;
+    height: 415px;
+    border: 10px solid teal;
+    border-radius: 10px;
+    float: left;
+    margin: 35px;
+}
+
+.profile-description{
+    text-align: center;
+    margin: 15px;
+}
+
+.notification{
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  background-color: tomato;
+  color: white;
+  padding: 10px;
+  border-radius: 15px;
+  border: 5px solid teal;
+  font-family: 'Pacifico', cursive;
+  display: none;
 }

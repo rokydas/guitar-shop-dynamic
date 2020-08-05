@@ -1,16 +1,8 @@
 <?php
     session_start();
-    if(isset($_GET['cart'])){
-        if($_GET['cart'] == 'Added'){
-            echo "<script>alert('This product is added in your cart')</script>";
-        }
-        if($_GET['cart'] == 'SignInRequired'){
-            echo "<script>alert('Sign in fast')</script>";
-        }
-        if($_GET['cart'] == 'deleted'){
-            echo "<script>alert('This product is deleted from your cart')</script>";
-        }
-    }
+    require 'includes/dbhandler.inc.php';
+
+
 ?>
 
 <?php
@@ -31,6 +23,25 @@ if(isset($_SESSION['admin-username'])){
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css?v=<?php echo time(); ?>">
     <title>Dream Guitarist</title>
+
+    <script type="text/javascript">
+
+    function unavailableSucc(){
+        document.getElementById('noti-text').innerText = 'You marked this product Unavailable';
+        setNotification();
+    }
+
+    function availableSucc(){
+        document.getElementById('noti-text').innerText = 'You marked this product Available';
+        setNotification();
+    }
+
+    function setNotification(){
+        document.getElementById('notification').style.display = 'block';
+        setTimeout(() => {  document.getElementById('notification').style.display = 'none'; }, 3000);
+    }
+    </script>
+
 </head>
 
 <body>
@@ -104,7 +115,6 @@ if(isset($_SESSION['admin-username'])){
 
 <div class="structure">
   <?php
-      require 'includes/dbhandler.inc.php';
 
       if(isset($_POST['deviser-submit'])){
           $keyword = 'deviser';
@@ -140,6 +150,8 @@ if(isset($_SESSION['admin-username'])){
       }
 
       $query_run = mysqli_query($conn, $query);
+      $availabe = 0;
+      $unavailable = 0;
 
       while($row = mysqli_fetch_array($query_run)){
             $brand = $row['brand'];
@@ -147,6 +159,13 @@ if(isset($_SESSION['admin-username'])){
             $price = $row['price'];
             $guitar_id = $row['guitar_id'];
             $image = $row['image'];
+            $presence = $row['presence'];
+            if ($presence == TRUE) {
+              $availabe = $availabe + 1;
+            }
+            else {
+              $unavailable = $unavailable + 1;
+            }
       ?>
       <div class="description">
          <br>
@@ -156,15 +175,31 @@ if(isset($_SESSION['admin-username'])){
               <br>Model: <?php echo $model; ?>
               <br>Product Id: <?php echo $guitar_id;?>
               <br>Price: <?php echo $price ; ?> <img class="taka" src="../images/taka.jpg" alt=""> <br>
-              <form class="" action="home.php?guitar_id=<?php echo $guitar_id;?>" method="post">
-                  <button name="unavailable-submit" type="submit" class="custom-button">Make Unavailable</button>
-              </form>
+              <?php if ($presence == TRUE) { ?>
+                  <form class="" action="includes/include-home.php?guitar_id=<?php echo $guitar_id;?>" method="post">
+                      <button name="unavailable-submit" type="submit" class="custom-button">Make Unavailable</button>
+                  </form>
+              <?php }
+              else { ?>
+                  <form class="" action="includes/include-home.php?guitar_id=<?php echo $guitar_id;?>" method="post">
+                      <button name="available-submit" type="submit" class="custom-button">Make Available</button>
+                  </form>
+              <?php } ?>
+
+
+
+
+
           </div>
 
       </div>
 
        <?php
+
           }
+          // echo $availabe;
+          // echo " ";
+          // echo $unavailable;
 
 ?>
 
@@ -172,30 +207,33 @@ if(isset($_SESSION['admin-username'])){
 
 </div>
 
+<div id='notification' class="notification">
+    <h1 id='noti-text' class="text-center">This is a notification</h3>
+</div>
 
 
+<?php
 
-<?php }
+if (isset($_GET['success'])) {
+    if ($_GET['success'] == 'unavailable') {
+        echo '<script type="text/javascript">unavailableSucc();</script>';
+    }
+    if ($_GET['success'] == 'available') {
+        echo '<script type="text/javascript">availableSucc();</script>';
+    }
+}
+
+}
 else {
   header("Location: index.php?loginFirst");
   exit();
 }
 
-//Making Unavailable
-if(isset($_SESSION['admin-username']) && isset($_POST['unavailable-submit'])){
-    if($_GET['guitar_id']){
-        $guitar_id = $_GET['guitar_id'];
-    }
-    $query = "update guitar set presence = FALSE where guitar_id =".$guitar_id;
-    if ($conn->query($query) === TRUE) {
-        echo "<script>alert('Making this product unavailable is successfull')</script>";
-    } else {
-        echo "Error updating record: " . $conn->error;
-    }
-}
-
 
 ?>
+
+
+
 
 
 

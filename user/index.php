@@ -1,13 +1,6 @@
 <?php
     session_start();
-    if(isset($_GET['cart'])){
-        if($_GET['cart'] == 'Added'){
-            echo "<script>alert('This product is added in your cart')</script>";
-        }
-        if($_GET['cart'] == 'SignInRequired'){
-            echo "<script>alert('Sign in fast')</script>";
-        }
-    }
+
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +16,30 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css?v=<?php echo time(); ?>">
     <title>Dream Guitarist</title>
+
+    <script type="text/javascript">
+
+    function cartAdded(){
+        document.getElementById('noti-text').innerText = 'This product is added in your cart';
+        setNotification();
+    }
+
+    function cartAlreadyAdded(){
+        document.getElementById('noti-text').innerText = 'This product is already added in your cart';
+        setNotification();
+    }
+
+    function signinRequired(){
+        document.getElementById('noti-text').innerText = 'You have to sign in first';
+        setNotification();
+    }
+
+    function setNotification(){
+        document.getElementById('notification').style.display = 'block';
+        setTimeout(() => {  document.getElementById('notification').style.display = 'none'; }, 3000);
+    }
+    </script>
+
 </head>
 
 <body>
@@ -40,7 +57,7 @@
                                 class="sr-only">(current)</span></a>
                                 <?php
                                   if(isset($_SESSION['user_id'])) {
-                                    echo "<a class='nav-item nav-link active' href='profile.php'>", $_SESSION['username'], "</a>
+                                    echo "<a class='nav-item nav-link active' href='profile.php'>", $_SESSION['first_name'], ' ', $_SESSION['last_name'], "</a>
                                           <a class='nav-item nav-link active' href='cart.php'>Cart</a>
                                           <form action='includes/include-logout.php' method='post'>
                                             <button type='submit' name='logout-submit' class='nav-item nav-link active btn btn-danger' href=''>Log Out</button>
@@ -157,14 +174,14 @@
               <br>Model: <?php echo $model; ?>
               <br>Product Id: <?php echo $guitar_id;?>
               <br>Price: <?php echo $price ; ?> <img class="taka" src="../images/taka.jpg" alt=""> <br>
-              <?php if ($presence == TRUE) {
-                  echo '<form class="" action="includes/include-cart.php?guitar_id=<?php echo $guitar_id;?>" method="post">
+              <?php if ($presence == TRUE) { ?>
+                  <form class="" action="includes/include-cart.php?guitar_id=<?php echo $guitar_id;?>" method="post">
                       <button name="cart-submit" type="submit" class="custom-button">Add to cart</button>
-                  </form>';
-              }
-              else {
-                  echo '<button name="" type="submit" class="custom-button">Stock Out</button>';
-              }
+                  </form>
+              <?php }
+              else { ?>
+                  <button name="" type="submit" class="custom-button">Stock Out</button>
+              <?php }
                ?>
 
 
@@ -181,14 +198,42 @@
 
 </div>
 
+<div id='notification' class="notification">
+    <h1 id='noti-text' class="text-center">This is a notification</h3>
+</div>
+
+<?php
+
+
+if(isset($_GET['cart'])){
+    if($_GET['cart'] == 'Added'){
+        echo '<script type="text/javascript">cartAdded();</script>';
+    }
+    if($_GET['cart'] == 'AlreadyAdded'){
+        echo '<script type="text/javascript">cartAlreadyAdded();</script>';
+    }
+    if($_GET['cart'] == 'SignInRequired'){
+        echo '<script type="text/javascript">signinRequired();</script>';
+    }
+}
 
 
 
+?>
 
+<div style="clear: both;"></div>
 
+<footer>
+    <div class="social container">
+        <a href=""><img src="../images/social/fb.jpg" alt=""></a>
+        <a href=""><img src="../images/social/linkedin.jpg" alt=""></a>
+        <a href=""><img src="../images/social/instra.jpg" alt=""></a>
+        <a href=""><img src="../images/social/twitter.jpg" alt=""></a>
+        <a href=""><img src="../images/social/youtube.jpg" alt=""></a>
 
-
-
+        <p class="copyright">Copyright © 2020 Rokomari.com</p>
+    </div>
+</footer>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

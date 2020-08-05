@@ -33,7 +33,7 @@
                     <div class="navbar-nav ml-auto">
                         <a class="nav-item nav-link active" href="index.php">Home <span
                                 class="sr-only">(current)</span></a>
-                        <a class="nav-item nav-link active navbar-active" href="profile.php"><?php echo $_SESSION['username'] ?></a>
+                        <a class="nav-item nav-link active navbar-active" href="profile.php"><?php echo $_SESSION['first_name'], ' ', $_SESSION['last_name'] ?></a>
                         <a class="nav-item nav-link active" href="cart.php">Cart</a>
                         <form action='includes/include-logout.php' method='post'>
                           <button type='submit' name='logout-submit' class='nav-item nav-link active btn btn-danger' href=''>Log Out</button>

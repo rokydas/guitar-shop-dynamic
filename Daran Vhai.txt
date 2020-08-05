@@ -1,0 +1,10 @@
+???Daran vhai
+ekhane guitar_id diye cart table e add kora hosse. ete amra icha moto ekta product add korte partesi. 
+kintu remove er khetre guitar_id diye remove korai ekoi guitar_id er sob product remove hoye jasse. 
+tai keu ekbar add korar por abar oita add korle hoi ar cart e newa jabe na, 
+ar na hoi quantity barate hobe ar remove korle quantity komate hobe. 
+
+notun logic dar koraisi abar erokom: 
+availabe ba unavailabe korle oi product gula jar jar cart e ase, 
+tader user table e giye cart number change hobe 
+

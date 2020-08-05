@@ -3,6 +3,11 @@
   require 'includes/dbhandler.inc.php';
 
     ?>
+
+    <?php
+    if(isset($_SESSION['admin-username'])){
+
+     ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,20 +21,7 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="styles/cart.css">
-    <title>Cart</title>
-
-    <script type="text/javascript">
-
-    function cartDeleted(){
-        document.getElementById('noti-text').innerText = 'This product is deleted from your cart';
-        setNotification();
-    }
-
-    function setNotification(){
-        document.getElementById('notification').style.display = 'block';
-        setTimeout(() => {  document.getElementById('notification').style.display = 'none'; }, 3000);
-    }
-    </script>
+    <title>User's Cart</title>
 
 </head>
 
@@ -44,13 +36,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto">
-                        <a class="nav-item nav-link active" href="index.php">Home <span
-                                class="sr-only">(current)</span></a>
-                        <a class="nav-item nav-link active" href="profile.php"><?php echo $_SESSION['first_name'], ' ', $_SESSION['last_name'] ?></a>
-                        <a class="nav-item nav-link active navbar-active" href="cart.php">Cart</a>
-                        <form action='includes/include-logout.php' method='post'>
+                      <a class="nav-item nav-link active" href="index.php">Home <span
+                              class="sr-only">(current)</span></a>
+                      <a class='nav-item nav-link active' href='admin-list.php'>Admin </a>
+                      <a class='nav-item nav-link active navbar-active' href='user-cart.php'>User's Cart</a>
+                      <a class='nav-item nav-link active' href='sell-history.php'>Sell History</a>
+                      <form action='includes/include-logout.php' method='post'>
                           <button type='submit' name='logout-submit' class='nav-item nav-link active btn btn-danger' href=''>Log Out</button>
-                        </form>
+                      </form>
                     </div>
                 </div>
             </nav>
@@ -61,14 +54,31 @@
             </div>
         </section>
     </header>
+    <?php
+        if (isset($_GET['user_id'])) {
+            $user_id = $_GET['user_id'];
+        }
+        $query = "select * from users";
+        $query_run = mysqli_query($conn, $query);
+
+        while($row = mysqli_fetch_array($query_run)){
+            if($user_id == $row['user_id']){
+                $first_name = $row['first_name'];
+                $last_name = $row['last_name'];
+                $username = $row['username'];
+                $name = $first_name. ' '. $last_name. "'s";
+            }
+        }
+
+    ?>
     <section class="container">
-        <h1 class="guitar-heading">Your Cart</h1>
+        <h1 class="guitar-heading"><?php echo $name; ?> Cart</h1>
         <hr class="hori-row">
     </section>
         <div class="structure">
           <?php
           require 'includes/dbhandler.inc.php';
-          $username = $_SESSION['username'];
+          // $username = $_SESSION['username'];
 
           $query = "select * from cart ORDER BY RAND()";
           $query_run = mysqli_query($conn, $query);
@@ -98,9 +108,6 @@
                             <br>Model: <?php echo $model; ?>
                             <br>Product Id: <?php echo $guitar_id;?>
                             <br>Price: <?php echo $price ; ?> <img class="taka" src="../images/taka.jpg" alt=""> <br>
-                            <form class="" action="includes/include-cart.php?guitar_id=<?php echo $guitar_id;?>" method="post">
-                                <button name="cart-remove-submit" type="submit" class="custom-button">Remove from Cart</button>
-                            </form>
                         </div>
 
                     </div>
@@ -112,36 +119,7 @@
 
         <div style="clear: both;"></div>
 
-        <div class="container buy">
-            <form class="" action="buy.php" method="post">
-                <button class="buy-now-button" type="submit" name="buy-submit">BUY NOW</button>
-            </form>
-        </div>
 
-        <div id='notification' class="notification">
-            <h1 id='noti-text' class="text-center">This is a notification</h3>
-        </div>
-
-        <?php
-            if(isset($_SESSION['user_id'])){
-              if(isset($_GET['cart'])){
-                  if($_GET['cart'] == 'deleted'){
-                      echo "<script>cartDeleted();</script>";
-                  }
-              }
-        ?>
-
-        <footer>
-            <div class="social container">
-                <a href=""><img src="../images/social/fb.jpg" alt=""></a>
-                <a href=""><img src="../images/social/linkedin.jpg" alt=""></a>
-                <a href=""><img src="../images/social/instra.jpg" alt=""></a>
-                <a href=""><img src="../images/social/twitter.jpg" alt=""></a>
-                <a href=""><img src="../images/social/youtube.jpg" alt=""></a>
-
-                <p class="copyright">Copyright © 2020 Rokomari.com</p>
-            </div>
-        </footer>
 
 
 

@@ -36,8 +36,8 @@ if(isset($_SESSION['admin-username'])){
                     <div class="navbar-nav ml-auto">
                         <a class="nav-item nav-link active" href="index.php">Home <span
                                 class="sr-only">(current)</span></a>
-                        <a class='nav-item nav-link active navbar-active' href='admin-list.php'>Admin </a>
-                        <a class='nav-item nav-link active' href='user-cart.php'>User's Cart</a>
+                        <a class='nav-item nav-link active' href='admin-list.php'>Admin </a>
+                        <a class='nav-item nav-link active navbar-active' href='user-cart.php'>User's Cart</a>
                         <a class='nav-item nav-link active' href='sell-history.php'>Sell History</a>
                         <form action='includes/include-logout.php' method='post'>
                             <button type='submit' name='logout-submit' class='nav-item nav-link active btn btn-danger' href=''>Log Out</button>
@@ -53,36 +53,43 @@ if(isset($_SESSION['admin-username'])){
         </section>
     </header>
     <section class="container">
-        <h1 class="guitar-heading">Our Admin Panel</h1>
+        <h1 class="guitar-heading">User's Cart</h1>
         <hr class="hori-row">
     </section>
     <section class="container">
-
+      <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">User Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Number of cart product</th>
+                <!-- <th scope="col">Price</th> -->
+            </tr>
+        </thead>
+        <tbody>
       <?php
-      $active_user = $_SESSION['admin-username'];
-      $query = "select * from admin ORDER BY RAND()";
+      $query = "select * from users ORDER BY cart_number DESC";
       $query_run = mysqli_query($conn, $query);
       while($row = mysqli_fetch_array($query_run)){
+          $user_id = $row['user_id'];
+          $name = $row['first_name'] . " " . $row['last_name'];
           $username = $row['username'];
-          $password = $row['password'];
+          $email = $row['email'];
+          $cart_number = $row['cart_number'];
         ?>
-        <div class="admin-block">
-            <div class="profile-pic">
-                <img class="img-fluid" src="../images/profile_pictures/<?php echo $row['profile_picture']; ?>" alt="">
-            </div>
-            <div class="profile-description">
-                <h5>Username: <?php echo $username; ?> </h5>
-                <h5>Password: <?php echo $password; ?> </h5>
-                <?php
-                    if($active_user == $username){
-                        echo '<h5>Active Status: <span style="color: #00ff00;">Active</span> </h5>';
-                    }
-                    else {
-                        echo '<h5>Active Status: <span style="color: red;">Not Active</span> </h5>';
-                    }
-                ?>
-            </div>
-        </div>
+        <tr>
+          <td><?php echo $user_id; ?></td>
+          <td><?php echo $name; ?></td>
+          <td><?php echo $username; ?></td>
+          <td><?php echo $email; ?></td>
+          <td><?php echo $cart_number; ?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <form style="display: inline;" class="" action="user-cart-details.php?user_id=<?php echo $user_id; ?>" method='post'>
+              <button type='submit' class="custom-button">See Details</button>
+            </form>
+          </td>
+        </tr>
 
     <?php } ?>
     </section>
