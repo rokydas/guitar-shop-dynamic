@@ -38,6 +38,7 @@
                     <div class="navbar-nav ml-auto">
                       <a class="nav-item nav-link active" href="index.php">Home <span
                               class="sr-only">(current)</span></a>
+                      <a class='nav-item nav-link active' href='insert-guitar.php'>Insert Guitar</a>
                       <a class='nav-item nav-link active' href='admin-list.php'>Admin </a>
                       <a class='nav-item nav-link active navbar-active' href='user-cart.php'>User's Cart</a>
                       <a class='nav-item nav-link active' href='sell-history.php'>Sell History</a>

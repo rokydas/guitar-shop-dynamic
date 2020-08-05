@@ -36,6 +36,7 @@ if(isset($_SESSION['admin-username'])){
                     <div class="navbar-nav ml-auto">
                         <a class="nav-item nav-link active" href="index.php">Home <span
                                 class="sr-only">(current)</span></a>
+                        <a class='nav-item nav-link active' href='insert-guitar.php'>Insert Guitar</a>
                         <a class='nav-item nav-link active navbar-active' href='admin-list.php'>Admin </a>
                         <a class='nav-item nav-link active' href='user-cart.php'>User's Cart</a>
                         <a class='nav-item nav-link active' href='sell-history.php'>Sell History</a>
@@ -99,6 +100,19 @@ else {
 
 ?>
 
+<div style="clear: both;"></div>
+
+<footer>
+    <div class="social container">
+        <a href=""><img src="../images/social/fb.jpg" alt=""></a>
+        <a href=""><img src="../images/social/linkedin.jpg" alt=""></a>
+        <a href=""><img src="../images/social/instra.jpg" alt=""></a>
+        <a href=""><img src="../images/social/twitter.jpg" alt=""></a>
+        <a href=""><img src="../images/social/youtube.jpg" alt=""></a>
+
+        <p class="copyright">Copyright © 2020 Rokomari.com</p>
+    </div>
+</footer>
 
 
 

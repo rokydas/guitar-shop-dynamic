@@ -244,3 +244,12 @@ table{
   font-family: 'Pacifico', cursive;
   display: none;
 }
+
+.sign-up-form{
+    background-color: teal;
+    margin-top: 50px;
+    border-radius: 20px;
+    padding: 20px 30px;
+    width: 400px;
+    color: white;
+}

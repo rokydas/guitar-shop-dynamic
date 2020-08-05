@@ -8,3 +8,8 @@ notun logic dar koraisi abar erokom:
 availabe ba unavailabe korle oi product gula jar jar cart e ase, 
 tader user table e giye cart number change hobe 
 
+new features: 
+1. Insert guitar info - admin
+2. Quantity (cart) - user
+3. Sell history - admin + user ==> user theke db te add hobe, admin er kase show hobe
+   sell table er column ==> sell_id(not primary key), guitar_id, quantity

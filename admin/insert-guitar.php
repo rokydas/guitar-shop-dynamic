@@ -24,7 +24,7 @@ if(isset($_SESSION['admin-username'])){
 </head>
 
 <body>
-    <header>
+    <header style="height: auto; padding-bottom: 50px;">
         <section class="container">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand" href="#"><img src="../images/logo.png" alt=""></a>
@@ -36,9 +36,9 @@ if(isset($_SESSION['admin-username'])){
                     <div class="navbar-nav ml-auto">
                         <a class="nav-item nav-link active" href="index.php">Home <span
                                 class="sr-only">(current)</span></a>
-                        <a class='nav-item nav-link active' href='insert-guitar.php'>Insert Guitar</a>
+                        <a class='nav-item nav-link active navbar-active' href='insert-guitar.php'>Insert Guitar</a>
                         <a class='nav-item nav-link active' href='admin-list.php'>Admin </a>
-                        <a class='nav-item nav-link active navbar-active' href='user-cart.php'>User's Cart</a>
+                        <a class='nav-item nav-link active' href='user-cart.php'>User's Cart</a>
                         <a class='nav-item nav-link active' href='sell-history.php'>Sell History</a>
                         <form action='includes/include-logout.php' method='post'>
                             <button type='submit' name='logout-submit' class='nav-item nav-link active btn btn-danger' href=''>Log Out</button>
@@ -52,54 +52,46 @@ if(isset($_SESSION['admin-username'])){
                 <h3>Now you can manage this website</h3>
             </div>
         </section>
-    </header>
-    <section class="container">
-        <h1 class="guitar-heading">User's Cart</h1>
-        <hr class="hori-row">
-    </section>
-    <section class="container">
-      <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">User Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Number of cart product</th>
-                <!-- <th scope="col">Price</th> -->
-            </tr>
-        </thead>
-        <tbody>
-      <?php
-      $query = "select * from users ORDER BY cart_number DESC";
-      $query_run = mysqli_query($conn, $query);
-      while($row = mysqli_fetch_array($query_run)){
-          $user_id = $row['user_id'];
-          $name = $row['first_name'] . " " . $row['last_name'];
-          $username = $row['username'];
-          $email = $row['email'];
-          $cart_number = $row['cart_number'];
-        ?>
-        <tr>
-          <td><?php echo $user_id; ?></td>
-          <td><?php echo $name; ?></td>
-          <td><?php echo $username; ?></td>
-          <td><?php echo $email; ?></td>
-          <td><?php echo $cart_number; ?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <form style="display: inline;" class="" action="user-cart-details.php?user_id=<?php echo $user_id; ?>" method='post'>
-              <button type='submit' class="custom-button">See Details</button>
+        <section class="container sign-up-form">
+          <h3 class="text-center">Insert Guitar</h3>
+
+          <?php
+            if (isset($_GET['insert'])) {
+              if ($_GET['insert']=='success') {
+                echo "<p class='success'>Insert Successful</p>";
+              }
+            }
+            if (isset($_GET['error'])) {
+              if ($_GET['error']=='emptyfields') {
+                echo "<p class='error'>Fill up all fields</p>";
+              }
+              if ($_GET['error']=='priceError') {
+                echo "<p class='error'>Price Should be a number</p>";
+              }
+            }
+          ?>
+
+            <form action="includes/include-insert-guitar.php" method="post">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Brand</label>
+                    <input type="text" name="brand" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Model</label>
+                    <input type="text" name="model" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Price</label>
+                    <input type="text" name="price" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Image</label>
+                    <input class="form-control" name="image" type="file" accept="image/*">
+                </div>
+                <button type="submit" name="insert-guitar-submit" class="custom-button">Insert Guitar</button>
             </form>
-          </td>
-        </tr>
-
-
-    <?php } ?>
-        </tbody>
-      </table>
-    </section>
-
-
-
+        </section>
+    </header>
 
     <div style="clear: both;"></div>
 
