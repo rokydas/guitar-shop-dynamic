@@ -77,6 +77,7 @@
                 $user_cart = $row['username'];
                 if ($username == $user_cart) {
                     $guitar_id = $row['guitar_id'];
+                    $quantity = $row['quantity'];
                     $query2 = "select * from guitar where guitar_id =".$guitar_id;
                     $query_run2 = mysqli_query($conn, $query2);
                     while($row2 = mysqli_fetch_array($query_run2)){
@@ -98,6 +99,13 @@
                             <br>Model: <?php echo $model; ?>
                             <br>Product Id: <?php echo $guitar_id;?>
                             <br>Price: <?php echo $price ; ?> <img class="taka" src="../images/taka.jpg" alt=""> <br>
+                            <form style="display: inline;" class="" action="includes/include-quantity.php?quantity= <?php echo $quantity; ?>&guitar_id= <?php echo $guitar_id; ?>" method="post">
+                                <button type="submit" name="minus-submit" class="btn btn-default"><i class="fas fa-minus">m</i></button>
+                            </form>
+                            <?php echo $quantity; ?>
+                            <form style="display: inline;" class="" action="includes/include-quantity.php?quantity=<?php echo $quantity; ?>&guitar_id= <?php echo $guitar_id; ?>" method="post">
+                                <button type="submit" name="plus-submit" class="btn btn-default"><i class="fa fa-plus">p</i></button>
+                            </form>
                             <form class="" action="includes/include-cart.php?guitar_id=<?php echo $guitar_id;?>" method="post">
                                 <button name="cart-remove-submit" type="submit" class="custom-button">Remove from Cart</button>
                             </form>
