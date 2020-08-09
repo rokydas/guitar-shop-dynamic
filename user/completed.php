@@ -1,7 +1,7 @@
 <?php
   session_start();
   require 'includes/dbhandler.inc.php';
-  if(isset($_SESSION['user_id'])){
+  if(isset($_SESSION['user_id']) && isset($_POST['completed-submit'])){
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="styles/cart.css">
-    <title>Buy</title>
+    <title>Completed Payment</title>
 
     <script type="text/javascript">
     function printPageArea(areaID){
@@ -60,9 +60,14 @@
             </div>
         </section>
     </header>
+    <section>
+        <h1 class="guitar-heading">Congratulation you have successfully completed your payment</h1>
+    </section>
+
+    <div id="printableArea">
 
     <section class="container">
-        <h1 class="guitar-heading">Your Cart Items</h1>
+        <h1 class="guitar-heading">Your Digital Cash Memo</h1>
         <hr class="hori-row">
     </section>
         <div class="structure">
@@ -133,24 +138,11 @@
       </tbody>
         </table>
         </div>
-
-
-
-
-        <h1 style="margin-top: 0px; margin-bottom: 50px;" class="guitar-heading text-center">Choose Your Payment Method</h1>
-
-        <div class="container text-center">
-            <img class="payment-option" src="../images/payment/credit.jpg">
-            <img class="payment-option" src="../images/payment/bkash.jpg">
-            <img class="payment-option" src="../images/payment/rocket.jpg">
-            <img class="payment-option" src="../images/payment/surecash.jpg">
-            <img class="payment-option" src="../images/payment/nogod.jpg">
         </div>
-        <div class="text-center">
-          <form class="" action="completed.php" method="post">
-              <button type="submit" name="completed-submit" style="margin-bottom: 100px;" class="custom-button">Payment Completed</button>
-          </form>
+        <div class="print">
+            <button class="buy-now-button" onclick="printPageArea('printableArea')">Print Cash Memo</button>
         </div>
+
 
         <footer>
             <div class="social container">

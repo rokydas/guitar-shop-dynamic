@@ -16,7 +16,7 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="styles/cart.css">
-    <title>Cart</title>
+    <title><?php echo $_SESSION['first_name'], ' ', $_SESSION['last_name'], "'s " ?>Cart</title>
 
     <script type="text/javascript">
 
@@ -70,7 +70,7 @@
           require 'includes/dbhandler.inc.php';
           $username = $_SESSION['username'];
 
-          $query = "select * from cart ORDER BY RAND()";
+          $query = "select * from cart";
           $query_run = mysqli_query($conn, $query);
 
           while($row = mysqli_fetch_array($query_run)){
@@ -91,7 +91,7 @@
 
             ?>
 
-                    <div class="description">
+                    <div style="height: 520px;" class="description">
                        <br>
                         <img src="../images/guitars/<?php echo $image; ?>" class="product">
                         <div class="box-text">
@@ -99,13 +99,16 @@
                             <br>Model: <?php echo $model; ?>
                             <br>Product Id: <?php echo $guitar_id;?>
                             <br>Price: <?php echo $price ; ?> <img class="taka" src="../images/taka.jpg" alt=""> <br>
-                            <form style="display: inline;" class="" action="includes/include-quantity.php?quantity= <?php echo $quantity; ?>&guitar_id= <?php echo $guitar_id; ?>" method="post">
-                                <button type="submit" name="minus-submit" class="btn btn-default"><i class="fas fa-minus">m</i></button>
-                            </form>
-                            <?php echo $quantity; ?>
-                            <form style="display: inline;" class="" action="includes/include-quantity.php?quantity=<?php echo $quantity; ?>&guitar_id= <?php echo $guitar_id; ?>" method="post">
-                                <button type="submit" name="plus-submit" class="btn btn-default"><i class="fa fa-plus">p</i></button>
-                            </form>
+                            <div class="quantity">
+                                <form style="display: inline;" class="" action="includes/include-quantity.php?quantity= <?php echo $quantity; ?>&guitar_id= <?php echo $guitar_id; ?>" method="post">
+                                    <button type="submit" name="minus-submit" class="btn btn-warning"><h4>-</h4></button>
+                                </form>
+                                <?php echo $quantity; ?>
+                                <form style="display: inline;" class="" action="includes/include-quantity.php?quantity=<?php echo $quantity; ?>&guitar_id= <?php echo $guitar_id; ?>" method="post">
+                                    <button type="submit" name="plus-submit" class="btn btn-warning"><h4>+</h4></button>
+                                </form>
+                            </div>
+
                             <form class="" action="includes/include-cart.php?guitar_id=<?php echo $guitar_id;?>" method="post">
                                 <button name="cart-remove-submit" type="submit" class="custom-button">Remove from Cart</button>
                             </form>

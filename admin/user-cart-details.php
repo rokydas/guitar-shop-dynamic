@@ -50,8 +50,8 @@
             </nav>
             <div class="heading">
                 <h1>Dream Guitarist</h1>
-                <h2>Welcome to our shop</h2>
-                <h3>Find out your guitar in our website</h3>
+                <h2>Welcome <span style="color: red;">Admin <?php echo $_SESSION['admin-username'] ?></span></h2>
+                <h3>Now you can manage this website</h3>
             </div>
         </section>
     </header>
@@ -81,7 +81,7 @@
           require 'includes/dbhandler.inc.php';
           // $username = $_SESSION['username'];
 
-          $query = "select * from cart ORDER BY RAND()";
+          $query = "select * from cart";
           $query_run = mysqli_query($conn, $query);
 
           while($row = mysqli_fetch_array($query_run)){
@@ -97,6 +97,7 @@
                         $price = $row2['price'];
                         $image = $row2['image'];
                         $presence = $row2['presence'];
+                        $quantity = $row['quantity'];
                         if ($presence == TRUE) {
 
             ?>
@@ -109,6 +110,9 @@
                             <br>Model: <?php echo $model; ?>
                             <br>Product Id: <?php echo $guitar_id;?>
                             <br>Price: <?php echo $price ; ?> <img class="taka" src="../images/taka.jpg" alt=""> <br>
+                            <div class="quantity">
+                                Quantity: <?php echo $quantity; ?>
+                            </div>
                         </div>
 
                     </div>

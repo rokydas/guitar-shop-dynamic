@@ -27,13 +27,19 @@ if(isset($_SESSION['user_id']) && isset($_POST['plus-submit'])){
 }
 
 else if(isset($_SESSION['user_id']) && isset($_POST['minus-submit'])){
-    $quantity = $quantity - 1;
-    $query = "update cart set quantity = quantity - 1 where username = '$username' and guitar_id = '$guitar_id' ";
-    if ($conn->query($query) === TRUE) {
-      header("Location: ../cart.php");
-      exit(); // it is to exist from this page and not to run below codes.
-    } else {
-      echo "Error updating record: " . $conn->error;
+    if ($quantity > 1) {
+        $quantity = $quantity - 1;
+        $query = "update cart set quantity = quantity - 1 where username = '$username' and guitar_id = '$guitar_id' ";
+        if ($conn->query($query) === TRUE) {
+          header("Location: ../cart.php");
+          exit(); // it is to exist from this page and not to run below codes.
+        } else {
+          echo "Error updating record: " . $conn->error;
+        }
+    }
+    else {
+        header("Location: ../cart.php");
+        exit(); // it is to exist from this page and not to run below codes.
     }
 }
 
