@@ -68,14 +68,14 @@
         <div class="structure">
           <?php
           require 'includes/dbhandler.inc.php';
-          $username = $_SESSION['username'];
+          $user_id = $_SESSION['user_id'];
 
           $query = "select * from cart";
           $query_run = mysqli_query($conn, $query);
 
           while($row = mysqli_fetch_array($query_run)){
-                $user_cart = $row['username'];
-                if ($username == $user_cart) {
+                $user_cart = $row['user_id'];
+                if ($user_id == $user_cart) {
                     $guitar_id = $row['guitar_id'];
                     $quantity = $row['quantity'];
                     $query2 = "select * from guitar where guitar_id =".$guitar_id;
@@ -142,17 +142,9 @@
               }
         ?>
 
-        <footer>
-            <div class="social container">
-                <a href=""><img src="../images/social/fb.jpg" alt=""></a>
-                <a href=""><img src="../images/social/linkedin.jpg" alt=""></a>
-                <a href=""><img src="../images/social/instra.jpg" alt=""></a>
-                <a href=""><img src="../images/social/twitter.jpg" alt=""></a>
-                <a href=""><img src="../images/social/youtube.jpg" alt=""></a>
-
-                <p class="copyright">Copyright © 2020 Rokomari.com</p>
-            </div>
-        </footer>
+        <?php
+          require 'footer.php';
+        ?>
 
 
 

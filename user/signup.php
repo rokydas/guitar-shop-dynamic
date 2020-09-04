@@ -118,17 +118,9 @@ if (!isset($_SESSION['user_id'])) {
             <p>Already registered? <a href="signin.php">Sign in</a> here</p>
         </section>
     </header>
-    <footer>
-        <div class="social container">
-            <a href=""><img src="../images/social/fb.jpg" alt=""></a>
-            <a href=""><img src="../images/social/linkedin.jpg" alt=""></a>
-            <a href=""><img src="../images/social/instra.jpg" alt=""></a>
-            <a href=""><img src="../images/social/twitter.jpg" alt=""></a>
-            <a href=""><img src="../images/social/youtube.jpg" alt=""></a>
-
-            <p class="copyright">Copyright © 2020 Rokomari.com</p>
-        </div>
-    </footer>
+    <?php
+      require 'footer.php';
+    ?>
 
   <?php }
   else {

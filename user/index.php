@@ -183,6 +183,9 @@
                   <button name="" type="submit" class="custom-button">Stock Out</button>
               <?php }
                ?>
+               <form class="" action="details.php?guitar_id=<?php echo $guitar_id;?>" method="post">
+                   <button name="cart-submit" type="submit" class="custom-button">See Details</button>
+               </form>
 
 
           </div>
@@ -223,17 +226,10 @@ if(isset($_GET['cart'])){
 
 <div style="clear: both;"></div>
 
-<footer>
-    <div class="social container">
-        <a href=""><img src="../images/social/fb.jpg" alt=""></a>
-        <a href=""><img src="../images/social/linkedin.jpg" alt=""></a>
-        <a href=""><img src="../images/social/instra.jpg" alt=""></a>
-        <a href=""><img src="../images/social/twitter.jpg" alt=""></a>
-        <a href=""><img src="../images/social/youtube.jpg" alt=""></a>
+<?php
+  require 'footer.php';
+?>
 
-        <p class="copyright">Copyright © 2020 Rokomari.com</p>
-    </div>
-</footer>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

@@ -66,7 +66,7 @@
             if($user_id == $row['user_id']){
                 $first_name = $row['first_name'];
                 $last_name = $row['last_name'];
-                $username = $row['username'];
+                $user_id = $row['user_id'];
                 $name = $first_name. ' '. $last_name. "'s";
             }
         }
@@ -85,8 +85,8 @@
           $query_run = mysqli_query($conn, $query);
 
           while($row = mysqli_fetch_array($query_run)){
-                $user_cart = $row['username'];
-                if ($username == $user_cart) {
+                $user_cart = $row['user_id'];
+                if ($user_id == $user_cart) {
                     $guitar_id = $row['guitar_id'];
                     $query2 = "select * from guitar where guitar_id =".$guitar_id;
                     $query_run2 = mysqli_query($conn, $query2);

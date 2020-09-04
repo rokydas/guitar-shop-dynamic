@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
-    <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="styles/details.css">
     <title><?php echo $_SESSION['first_name'], ' ', $_SESSION['last_name'] ?></title>
 </head>
 
@@ -31,9 +31,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto">
-                        <a class="nav-item nav-link active" href="index.php">Home <span
+                        <a class="nav-item nav-link active navbar-active" href="index.php">Home <span
                                 class="sr-only">(current)</span></a>
-                        <a class="nav-item nav-link active navbar-active" href="profile.php"><?php echo $_SESSION['first_name'], ' ', $_SESSION['last_name'] ?></a>
+                        <a class="nav-item nav-link active" href="profile.php"><?php echo $_SESSION['first_name'], ' ', $_SESSION['last_name'] ?></a>
                         <a class="nav-item nav-link active" href="cart.php">Cart</a>
                         <form action='includes/include-logout.php' method='post'>
                           <button type='submit' name='logout-submit' class='nav-item nav-link active btn btn-danger' href=''>Log Out</button>
@@ -47,46 +47,62 @@
                 <h3>Find out your guitar in our website</h3>
             </div>
         </section>
+      </header>
         <?php
-        $user = $_SESSION['username'];
-        $query = "select * from users";
+
+        if(isset($_GET['guitar_id'])){
+            $guitar_id = $_GET['guitar_id'];
+        }
+
+        $query = "select * from guitar";
         $query_run = mysqli_query($conn, $query);
         while($row = mysqli_fetch_array($query_run)){
-            $name = $row['first_name']." ".$row['last_name'];
-            $username = $row['username'];
-            $email = $row['email'];
-            $mobile_number = $row['mobile_number'];
-            if($user == $username){
+            $id = $row['guitar_id'];
+
+            if($guitar_id == $id){
 
           ?>
 
-        <section class="container profile">
-            <h3 style="font-family: 'Pacifico', cursive;">Your Profile</h3>
+        <section class="container guitar">
+            <h3 class="text-center" style="font-family: 'Pacifico', cursive;">Product Details</h3>
             <hr class="hori-row">
-            <div class="profile-pic">
-                <img class="img-fluid" src="../images/profile_pictures/<?php echo $row['profile_picture']; ?>" alt="">
+
+            <div class="d-flex justify-content-around">
+              <div class="guitar-pic">
+                  <img width="500px" class="img-fluid" src="../images/guitars/<?php echo $row['image']; ?>" alt="">
+              </div>
+
+              <div class="guitar-description">
+                  <h3>Brand name: <?php echo $row['brand']; ?></h3>
+                  <h3>Model name: <?php echo $row['model']; ?> </h3>
+                  <h3>Product ID: <?php echo $row['guitar_id']; ?> </h3>
+                  <h3>Price: <?php echo $row['price']; ?></h3>
+              </div>
             </div>
-            <div class="profile-description">
-                <h3>Name: <?php echo $name; ?></h3>
-                <h3>Username: <?php echo $username; ?> </h3>
-                <h3>Email: <?php echo $email; ?> </h3>
-                <h3>Mobile Number: <?php echo $mobile_number; ?></h3>
-                <form class="" action="update-profile.php" method="post">
-                    <button name="update-submit" type="submit" class="custom-button">Update Profile</button>
-                </form>
-                <?php
-                    if (isset($_GET['update'])) {
-                      if ($_GET['update']=='success') {
-                        echo "<p class='success'>Profile Updated Successfully</p>";
-                      }
-                    }
-                ?>
+
+            <div class="review">
+              <div class="input-comment">
+                <h3 style="color: black">Submit your review about this product</h3>
+                <textarea rows="4" cols="50" name="comment" form="usrform"></textarea><br>
+                <button class="custom-button" type="button" name="button">Submit</button>
+              </div>
+              <div class="comment">
+                <h3>Roky Das</h3>
+                <p>Product ta valo lagse amar. erokom product aro cai amader apu vhai er kase.</p>
+              </div>
+              <div class="comment">
+                <h3>Apu Vhai</h3>
+                <p>Thik Ase vhai. apnar jonno erokom product ana hobe aro.</p>
+              </div>
+
             </div>
+
+
         </section>
 
       <?php } } ?>
 
-    </header>
+
     <?php
       require 'footer.php';
     ?>

@@ -16,3 +16,7 @@ new features:
 
 <button id="product2-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
 <button id="product2-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+
+2 ta bug dhora porse. 
+1. cart er sob kaj username dhore korate username update korle ager cart gulo ar show kore na. so, eta user-id diye korte hobe. 
+2. quantity baranor fole ar komanor fole numbers of cart er bepar ta database e update hoi na. 
