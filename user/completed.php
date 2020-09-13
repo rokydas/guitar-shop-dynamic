@@ -87,7 +87,7 @@
             <tbody>
         <?php
         require 'includes/dbhandler.inc.php';
-        $username = $_SESSION['username'];
+        $user_id = $_SESSION['user_id'];
 
         $sl = 0;
         $total_price = 0;
@@ -95,8 +95,8 @@
         $query_run = mysqli_query($conn, $query);
 
         while($row = mysqli_fetch_array($query_run)){
-              $user_cart = $row['username'];
-              if ($username == $user_cart) {
+              $user_cart = $row['user_id'];
+              if ($user_id == $user_cart) {
                   $guitar_id = $row['guitar_id'];
                   $query2 = "select * from guitar where guitar_id =".$guitar_id;
                   $query_run2 = mysqli_query($conn, $query2);
