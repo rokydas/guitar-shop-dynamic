@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2020 at 05:42 PM
+-- Generation Time: Sep 13, 2020 at 03:43 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -55,7 +55,7 @@ INSERT INTO `admin` (`username`, `password`, `profile_picture`) VALUES
 CREATE TABLE `cart` (
   `cart_id` int(11) NOT NULL,
   `guitar_id` int(11) NOT NULL,
-  `username` varchar(20) NOT NULL,
+  `user_id` varchar(20) NOT NULL,
   `quantity` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -63,66 +63,11 @@ CREATE TABLE `cart` (
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`cart_id`, `guitar_id`, `username`, `quantity`) VALUES
-(164, 58, 'rokydas', 3),
-(165, 10, 'rokydas', 2),
-(166, 5, 'rokydas', 3),
-(167, 43, 'rokydas', 2),
-(168, 9, 'rokydas', 2),
-(169, 24, 'rokydas', 1),
-(170, 11, 'rokydas', 1),
-(171, 38, 'rokydas', 1),
-(172, 9, 'showravdevnathapu', 1),
-(173, 18, 'showravdevnathapu', 1),
-(174, 45, 'showravdevnathapu', 1),
-(175, 47, 'showravdevnathapu', 1),
-(176, 57, 'showravdevnathapu', 1),
-(177, 8, 'showravdevnathapu', 1),
-(178, 5, 'showravdevnathapu', 1),
-(179, 40, 'showravdevnathapu', 1),
-(180, 22, 'showravdevnathapu', 1),
-(181, 33, 'showravdevnathapu', 1),
-(182, 7, 'showravdevnathapu', 1),
-(183, 11, 'showravdevnathapu', 1),
-(184, 18, 'showravdas', 1),
-(185, 22, 'showravdas', 1),
-(186, 27, 'showravdas', 1),
-(187, 3, 'showravdas', 1),
-(188, 55, 'showravdas', 1),
-(189, 35, 'nayandas', 1),
-(190, 7, 'nayandas', 1),
-(191, 57, 'nayandas', 1),
-(192, 34, 'ketovhai', 1),
-(193, 11, 'ketovhai', 1),
-(194, 55, 'ketovhai', 1),
-(195, 13, 'ketovhai', 1),
-(196, 21, 'ketovhai', 1),
-(197, 6, 'ketovhai', 1),
-(198, 22, 'ketovhai', 1),
-(199, 19, 'ketovhai', 1),
-(200, 45, 'ketovhai', 1),
-(201, 10, 'niloyroy', 1),
-(202, 13, 'niloyroy', 1),
-(203, 33, 'abulhosen', 1),
-(204, 8, 'abulhosen', 1),
-(205, 38, 'abulhosen', 1),
-(206, 13, 'abulhosen', 1),
-(207, 34, 'jabedhossain', 1),
-(208, 21, 'jabedhossain', 1),
-(209, 24, 'jabedhossain', 1),
-(210, 20, 'sarujdutta', 1),
-(211, 8, 'sarujdutta', 1),
-(212, 9, 'sarujdutta', 1),
-(213, 21, 'sarujdutta', 1),
-(214, 18, 'sarujdutta', 1),
-(215, 35, 'sarujdutta', 1),
-(216, 14, 'sarujdutta', 1),
-(217, 37, 'sarujdutta', 1),
-(218, 58, 'sarujdutta', 1),
-(219, 18, 'nurulabsar', 1),
-(220, 16, 'nurulabsar', 1),
-(221, 26, 'nurulabsar', 1),
-(222, 27, 'nurulabsar', 1);
+INSERT INTO `cart` (`cart_id`, `guitar_id`, `user_id`, `quantity`) VALUES
+(235, 11, '12', 3),
+(236, 27, '12', 1),
+(237, 22, '12', 2),
+(238, 72, '12', 1);
 
 -- --------------------------------------------------------
 
@@ -175,7 +120,7 @@ INSERT INTO `guitar` (`guitar_id`, `brand`, `model`, `image`, `price`, `presence
 (33, 'Fender', 'Electric Guitar (Red)', 'fender12.jpg', 18990, b'1'),
 (34, 'Fender', 'Electric Guitar (Black)', 'fender13.jpg', 98000, b'1'),
 (35, 'Fender', 'California Instrument Cables', 'fender14.jpg', 645, b'1'),
-(36, 'Yamaha', 'Acoustic Guitar Strings', 'yamaha1.jpg', 190, b'0'),
+(36, 'Yamaha', 'Acoustic Guitar Strings', 'yamaha1.jpg', 190, b'1'),
 (37, 'Yamaha', 'Deep Blue Acoustic', 'yamaha2.jpg', 6000, b'1'),
 (38, 'Yamaha', '4010 Acoustic', 'yamaha3.jpg', 7000, b'1'),
 (39, 'Yamaha', 'Yamaha Guitar Capo', 'yamaha4.jpg', 940, b'1'),
@@ -187,7 +132,7 @@ INSERT INTO `guitar` (`guitar_id`, `brand`, `model`, `image`, `price`, `presence
 (45, 'Yamaha', 'F-30 (Semi - Acoustic)', 'yamaha10.jpg', 12250, b'1'),
 (46, 'Yamaha', 'C - 315 (Classical)', 'yamaha11.jpg', 11270, b'0'),
 (47, 'Yamaha', 'FG-700', 'yamaha12.jpg', 7800, b'1'),
-(48, 'Yamaha', 'C-40 (Classical)', 'yamaha13.jpg', 14210, b'0'),
+(48, 'Yamaha', 'C-40 (Classical)', 'yamaha13.jpg', 14210, b'1'),
 (49, 'Yamaha', 'APX500', 'yamaha14.jpg', 14500, b'0'),
 (50, 'Ibanez', '270dx Electric Lead Guitar (Brown)', 'ibanez1.jpg', 19000, b'1'),
 (51, 'Ibanez', 'Series 470', 'ibanez2.jpg', 17640, b'0'),
@@ -202,7 +147,8 @@ INSERT INTO `guitar` (`guitar_id`, `brand`, `model`, `image`, `price`, `presence
 (60, 'Deviser', 'LS570', 'deviser1.jpg', 9000, b'0'),
 (61, 'Deviser', 'L625', 'deviser5.jpg', 7700, b'0'),
 (62, 'Deviser', 'JA4040S', 'deviser4.jpg', 7000, b'0'),
-(72, 'Omuk', 'Tomuk', 'fender12.jpg', 567, b'1');
+(72, 'Omuk', 'Tomuk', 'fender12.jpg', 567, b'1'),
+(73, 'Emne', 'Semne', 'yamaha5.jpg', 4500, b'0');
 
 -- --------------------------------------------------------
 
@@ -251,16 +197,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `password`, `profile_picture`, `mobile_number`, `cart_number`) VALUES
-(1, 'Showrav Dev', 'Nath Apu', 'showravdevnathapu', 'showravdev@gmail.com', 'showrav', '6.jpg', '01881569774', 11),
-(2, 'Roky', 'Das', 'rokydas', 'rokydas@gmail.com', 'rokydas', '4.jpg', '01521227862', 8),
-(3, 'Showrav', 'Das', 'showravdas', 'showravdas@gmail.com', '12345', '3.jpg', '01309722830', 4),
-(4, 'Nayan', 'Das', 'nayandas', 'nayandas@gmail.com', 'nayandas', '6.jpg', '01856987452', 2),
-(5, 'Keto', 'Vhai', 'ketovhai', 'ketovhai@gmail.com', 'ketovhai', '2.jpg', '01789564521', 8),
-(6, 'Niloy', 'Roy', 'niloyroy', 'niloyroy@gmail.com', 'niloyroy', '10.jpg', '01236547896', 2),
-(7, 'Abul', 'Hosen', 'abulhosen', 'abulhosen@gmail.com', 'abulhosen', '3.jpg', '01458796512', 4),
-(8, 'Jabed', 'Hossain', 'jabedhossain', 'jabedhossain@gmail.c', 'jabedhossain', '9.jpg', '01324125879', 3),
-(9, 'Saruj', 'Dutta', 'sarujdutta', 'sarujdutta@gmail.com', 'sarujdutta', '5.jpg', '01963452187', 9),
-(10, 'Nurul', 'Absar', 'nurulabsar', 'nurulabsar@gmail.com', 'nurulabsar', '3.jpg', '01234859674', 4);
+(1, 'Showrav Dev', 'Nath Apu', 'showravdevnathapu', 'showravdev@gmail.com', 'showrav', '6.jpg', '01881569774', 0),
+(2, 'Roky', 'Das', 'rokydas', 'rokydas@gmail.com', 'rokydas', '4.jpg', '01521227862', 0),
+(3, 'Showrav', 'Das', 'showravdas', 'showravdas@gmail.com', '12345', '3.jpg', '01309722830', 0),
+(4, 'Nayan', 'Das', 'nayandas', 'nayandas@gmail.com', 'nayandas', '6.jpg', '01856987452', 0),
+(5, 'Keto', 'Vhai', 'ketovhai', 'ketovhai@gmail.com', 'ketovhai', '2.jpg', '01789564521', 0),
+(6, 'Niloy', 'Roy', 'niloyroy', 'niloyroy@gmail.com', 'niloyroy', '10.jpg', '01236547896', 0),
+(7, 'Abul', 'Hosen', 'abulhosen', 'abulhosen@gmail.com', 'abulhosen', '3.jpg', '01458796512', 0),
+(8, 'Jabed', 'Hossain', 'jabedhossain', 'jabedhossain@gmail.c', 'jabedhossain', '9.jpg', '01324125879', 0),
+(9, 'Saruj', 'Dutta', 'sarujdutta', 'sarujdutta@gmail.com', 'sarujdutta', '5.jpg', '01963452187', 0),
+(10, 'Nurul', 'Absar', 'nurulabsar', 'nurulabsar@gmail.com', 'nurulabsar', '3.jpg', '01234859674', 0),
+(11, 'Karim', 'Uddin', 'karimuddin', 'karimuddin@gmail.com', '12345', '7.jpg', '01752698745', 0),
+(12, 'Kahim', 'Ali', 'kahimali', 'karimali@gmail.com', '12345', '10.jpg', '01589759845', 7);
 
 --
 -- Indexes for dumped tables
@@ -310,13 +258,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
 
 --
 -- AUTO_INCREMENT for table `guitar`
 --
 ALTER TABLE `guitar`
-  MODIFY `guitar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `guitar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `sell_details`
@@ -328,7 +276,7 @@ ALTER TABLE `sell_details`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
