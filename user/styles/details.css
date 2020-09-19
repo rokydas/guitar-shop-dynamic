@@ -19,12 +19,15 @@ header{
     padding: 20px;
 }
 
-.review{
-  margin-top: 20px;
+.review {
   color: white;
 }
 
-.comment{
+.take-review{
+  margin-top: 20px;
+}
+
+.show-review{
   padding: 20px;
   margin: 20px 0px;
   border-radius: 10px;

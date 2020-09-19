@@ -120,7 +120,7 @@ footer{
 .description{
   float: left;
   width: 350px;
-  height: 480px;
+  height: auto;
   border: black;
   margin: 30px;
   margin-left: 95px;

@@ -174,18 +174,17 @@
               <br>Model: <?php echo $model; ?>
               <br>Product Id: <?php echo $guitar_id;?>
               <br>Price: <?php echo $price ; ?> <img class="taka" src="../images/taka.jpg" alt=""> <br>
-              <?php if ($presence == TRUE) { ?>
-                  <form class="" action="includes/include-cart.php?guitar_id=<?php echo $guitar_id;?>" method="post">
-                      <button name="cart-submit" type="submit" class="custom-button">Add to cart</button>
-                  </form>
+              <form method="post">
+                <?php if ($presence == TRUE) { ?>
+                  <button formaction="includes/include-cart.php?guitar_id=<?php echo $guitar_id;?>" name="cart-submit" type="submit" class="custom-button">Add to cart</button>
+
               <?php }
               else { ?>
-                  <button name="" type="submit" class="custom-button">Stock Out</button>
+                  <button formaction="#" name="" type="submit" class="custom-button">Stock Out</button>
               <?php }
                ?>
-               <form class="" action="details.php?guitar_id=<?php echo $guitar_id;?>" method="post">
-                   <button name="cart-submit" type="submit" class="custom-button">See Details</button>
-               </form>
+                  <button formaction="details.php?guitar_id=<?php echo $guitar_id;?>" name="cart-submit" type="submit" class="custom-button">See Details</button>
+             </form>
 
 
           </div>
