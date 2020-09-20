@@ -176,16 +176,18 @@ if(isset($_SESSION['admin-username'])){
               <br>Model: <?php echo $model; ?>
               <br>Product Id: <?php echo $guitar_id;?>
               <br>Price: <?php echo $price ; ?> <img class="taka" src="../images/taka.jpg" alt=""> <br>
-              <?php if ($presence == TRUE) { ?>
-                  <form class="" action="includes/include-home.php?guitar_id=<?php echo $guitar_id;?>" method="post">
-                      <button name="unavailable-submit" type="submit" class="custom-button">Make Unavailable</button>
-                  </form>
+
+              <form method="post">
+                <?php if ($presence == TRUE) { ?>
+                  <button formaction="includes/include-home.php?guitar_id=<?php echo $guitar_id;?>" name="unavailable-submit" type="submit" class="custom-button">Make Unavailable</button>
+
               <?php }
               else { ?>
-                  <form class="" action="includes/include-home.php?guitar_id=<?php echo $guitar_id;?>" method="post">
-                      <button name="available-submit" type="submit" class="custom-button">Make Available</button>
-                  </form>
-              <?php } ?>
+                  <button formaction="includes/include-home.php?guitar_id=<?php echo $guitar_id;?>" name="available-submit" type="submit" class="custom-button">Make Available</button>
+              <?php }
+               ?>
+                  <button formaction="details.php?guitar_id=<?php echo $guitar_id;?>" type="submit" class="custom-button">See Details</button>
+             </form>
 
 
 
@@ -235,17 +237,9 @@ else {
 
 <div style="clear: both;"></div>
 
-<footer>
-    <div class="social container">
-        <a href=""><img src="../images/social/fb.jpg" alt=""></a>
-        <a href=""><img src="../images/social/linkedin.jpg" alt=""></a>
-        <a href=""><img src="../images/social/instra.jpg" alt=""></a>
-        <a href=""><img src="../images/social/twitter.jpg" alt=""></a>
-        <a href=""><img src="../images/social/youtube.jpg" alt=""></a>
-
-        <p class="copyright">Copyright © 2020 Rokomari.com</p>
-    </div>
-</footer>
+<?php
+  require 'footer.php';
+?>
 
 
 

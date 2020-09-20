@@ -124,6 +124,10 @@
 
         <div style="clear: both;"></div>
 
+        <?php
+          require 'footer.php';
+        ?>
+
 
 
 

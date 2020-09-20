@@ -95,17 +95,9 @@ if(isset($_SESSION['admin-username'])){
 
     <div style="clear: both;"></div>
 
-    <footer>
-        <div class="social container">
-            <a href=""><img src="../images/social/fb.jpg" alt=""></a>
-            <a href=""><img src="../images/social/linkedin.jpg" alt=""></a>
-            <a href=""><img src="../images/social/instra.jpg" alt=""></a>
-            <a href=""><img src="../images/social/twitter.jpg" alt=""></a>
-            <a href=""><img src="../images/social/youtube.jpg" alt=""></a>
-
-            <p class="copyright">Copyright © 2020 Rokomari.com</p>
-        </div>
-    </footer>
+    <?php
+      require 'footer.php';
+    ?>
 
 <?php
 

@@ -102,7 +102,7 @@
         }
     }
     else {
-        header("Location: ../index.php?ami");
+        header("Location: ../index.php");
         exit(); // it is to exist from this page and not to run below codes.
     }
 

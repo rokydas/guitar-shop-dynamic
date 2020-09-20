@@ -183,7 +183,7 @@
                   <button formaction="#" name="" type="submit" class="custom-button">Stock Out</button>
               <?php }
                ?>
-                  <button formaction="details.php?guitar_id=<?php echo $guitar_id;?>" name="cart-submit" type="submit" class="custom-button">See Details</button>
+                  <button formaction="details.php?guitar_id=<?php echo $guitar_id;?>" type="submit" class="custom-button">See Details</button>
              </form>
 
 
